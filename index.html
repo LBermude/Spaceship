@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spaceship Animation</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      width: 200px;
+      height: 700px;
+      position: relative;
+      overflow: hidden;
+    }
+    .spaceship {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: move 3s infinite;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+  <script>
+    const lane = document.querySelectorAll('td');
+    var currentIndex = 0;
+    lane[currentIndex].innerHTML = '<object class="spaceship" type="image/svg+xml" data="spaceship.svg"></object>';
+//Controles du vaisseau//
+    document.addEventListener('keydown', event => {
+      if (event.key == 'ArrowLeft') {
+        if (currentIndex > 0) {
+          lane[currentIndex].innerHTML = '';
+          currentIndex--;
+          lane[currentIndex].innerHTML = '<object class="spaceship" type="image/svg+xml" data="spaceship.svg"></object>';
+        }
+      } else if (event.key == 'ArrowRight') {
+        if (currentIndex < lane.length - 1) {
+          lane[currentIndex].innerHTML = '';
+          currentIndex++;
+          lane[currentIndex].innerHTML = '<object class="spaceship" type="image/svg+xml" data="spaceship.svg"></object>';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
